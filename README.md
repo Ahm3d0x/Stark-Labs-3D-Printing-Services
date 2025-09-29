@@ -1,6 +1,15 @@
 # Stark Labs - 3D Printing Services
 
 A modern, responsive website for **Stark Labs**, offering professional 3D printing services with an interactive gallery, service catalog, and online ordering system.
+![Project Preview](photo/1.png)
+![Project Preview](photo/2.png)
+![Project Preview](photo/3.png)
+![Project Preview](photo/4.png)
+![Project Preview](photo/5.png)
+![Project Preview](photo/6.png)
+![Project Preview](photo/7.png)
+![Project Preview](photo/8.png)
+--
 
 ## 🌟 Features
 
@@ -94,10 +103,11 @@ module.exports = {
 ## 📞 Contact
 
 For inquiries or support, feel free to reach out through:
-
-
-- **LinkedIn:** [Ahmed M. Attia](https://www.linkedin.com/in/ahmed-mohamed-attia-03320a308/)
-- **GitHub:** [Ahm3d0x](https://github.com/Ahm3d0x)
+## 👨‍💻 Developer
+**Name:** Ahmed Mohamed Attia  
+**Location:** Kafr Saqr, Sharqia, Egypt  
+**GitHub:** [Ahm3d0x](https://github.com/Ahm3d0x)  
+**LinkedIn:** [Ahmed M. Attia](https://www.linkedin.com/in/ahmed-mohamed-attia-03320a308/)
 
 ## 📜 License
 
@@ -105,11 +115,44 @@ This project is licensed under the **MIT License** - see the LICENSE file for de
 
 ## 🙏 Acknowledgments
 
-- **Tailwind CSS** for the utility-first CSS framework
 - **Google Fonts** for typography
 - **Heroicons** for beautiful SVG icons
 
 ---
 
-**Developer:** Ahmed Mohamed Attia  
-**Location:**  Kafr Saqr, Sharqia, Egypt
+## 🔗 Related Projects
+
+### 1. StarkLabs Project JSON Panel
+A modern admin panel for managing 3D printing project data with JSON generation.
+
+**Features:**
+- Modern UI/UX with light/dark theme support
+- Form-based interface for easy data entry
+- Real-time JSON preview
+- Automatic path generation for models/images
+- Print time calculator
+- Input validation and data management
+
+**Links:**
+- [GitHub Repository](https://github.com/Ahm3d0x/StarkLabs-Project-JSON-Panel-helper-site)
+- [Live Demo](https://ahm3d0x.github.io/StarkLabs-Project-JSON-Panel-helper-site/)
+
+### 2. StarkLabs Event JSON Panel
+A dashboard for creating and managing event offers with auto JSON generation.
+
+**Features:**
+- Event management with dates and discounts
+- Tag system for categorization
+- Real-time JSON preview
+- Mobile responsive layout
+- Dark mode support
+
+**Links:**
+- [GitHub Repository](https://github.com/Ahm3d0x/starklabs-event-json-panel)
+- [Live Demo](https://ahm3d0x.github.io/starklabs-event-json-panel/)
+
+
+---
+---
+
+© 2025 Stark Labs. All rights reserved.

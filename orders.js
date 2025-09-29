@@ -50,8 +50,6 @@ function loadCartSummary() {
     const name = document.getElementById('fullName').value.trim();
     const email = document.getElementById('email').value.trim();
     const phone = document.getElementById('phone').value.trim();
-    const gender = document.getElementById('gender').value.trim();
-    const age = document.getElementById('age').value.trim();
     const service = document.getElementById('serviceType').value.trim();
     const description = document.getElementById('projectDescription').value.trim();
     const notes = document.getElementById('additionalNotes').value.trim();
@@ -89,8 +87,6 @@ function loadCartSummary() {
       `👤 *Full Name:* ${name}\n` +
       `📧 *Email:* ${email}\n` +
       `📞 *Phone:* ${phone}\n` +
-      (gender ? `⚧️ *Gender:* ${gender}\n` : '') +
-      (age ? `🎂 *Age:* ${age}\n` : '') +
       `🛠️ *Service Type:* ${service}\n\n` +
       `📦 *Order Items:*\n${cartDetails}\n` +
       `💰 *Total Price:* ${totalPrice} EGP\n\n` +
