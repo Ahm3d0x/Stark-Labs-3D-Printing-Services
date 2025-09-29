@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Project - 3D Stark Labs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen">
+    <div class="min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">
+        <div class="w-full max-w-4xl">
+            <!-- Header -->
+            <header class="mb-8 text-center">
+                <h1 class="text-2xl sm:text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">Add New Project</h1>
+                <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Fill out the form to add a new project to the gallery</p>
+            </header>
+
+            <!-- Main Form -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+                <div class="p-4 sm:p-6 md:p-8">
+                    <form id="projectForm" class="space-y-6">
+                <!-- Folder Name -->
+                <div>
+                    <label for="folder" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                        Folder Name
+                    </label>
+                    <input type="text" id="folder" name="folder" required
+                        class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
+                        placeholder="Example: my-project">
+                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Folder name must be unique</p>
+                </div>
+
+                <!-- Project Name -->
+                <div>
+                    <label for="projectName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                        Project Name
+                    </label>
+                    <input type="text" id="projectName" name="projectName" required
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring focus:ring-primary-200 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white p-2 border"
+                        placeholder="Enter project name">
+                </div>
+
+                <!-- Description -->
+                <div>
+                    <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                        Project Description
+                    </label>
+                    <textarea id="description" name="description" rows="3" required
+                        class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
+                        placeholder="Enter detailed project description"></textarea>
+                </div>
+
+                <!-- Form Fields Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                    <!-- Weight -->
+                    <div class="space-y-1">
+                        <label for="weight" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            Weight (grams)
+                        </label>
+                        <input type="number" id="weight" name="weight" step="0.01" min="0" required
+                            class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
+                            placeholder="Enter weight in grams">
+                    </div>
+
+                    <!-- Material Type -->
+                    <div class="space-y-1">
+                        <label for="material" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            Material Type
+                        </label>
+                        <input type="text" id="material" name="material" required
+                            class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
+                            placeholder="Example: PLA, ABS, Resin">
+                    </div>
+
+                    <!-- Print Resolution -->
+                    <div class="space-y-1">
+                        <label for="resolution" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            Print Resolution
+                        </label>
+                        <input type="text" id="resolution" name="resolution" required
+                            class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
+                            placeholder="Example: 0.2mm">
+                    </div>
+
+                    <!-- Price -->
+                    <div class="space-y-1">
+                        <label for="price" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            Price (USD)
+                        </label>
+                        <div class="relative rounded-md shadow-sm">
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                <span class="text-gray-500 dark:text-gray-400 sm:text-sm">$</span>
+                            </div>
+                            <input type="number" id="price" name="price" min="0" step="0.01" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring focus:ring-primary-200 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white p-2 border pr-10"
+                                placeholder="0.00">
+                        </div>
+                    </div>
+
+                    <!-- Number of Photos -->
+                    <div class="space-y-1">
+                        <label for="photos" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            Number of Photos
+                        </label>
+                        <input type="number" id="photos" name="photos" min="1" max="10" value="3" required
+                            class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
+                            placeholder="Number of photos (1-10)">
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="flex flex-col sm:flex-row justify-end gap-3 mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                    <button type="button"
+                        class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                        Cancel
+                    </button>
+                    <button type="submit"
+                        class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                        Save Project
+                    </button>
+                </div>
+
+                <!-- Generate JSON Button -->
+                <div class="space-y-4">
+                    <button type="button" id="generateJsonBtn"
+                        class="w-full flex justify-center items-center px-4 py-3 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        title="Generate JSON">
+                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        Generate JSON
+                    </button>
+
+                    <!-- JSON Output -->
+                    <div id="jsonOutputContainer" class="mt-4 hidden">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-white">JSON Output</h3>
+                            <button type="button" id="copyJsonBtn" class="text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-500" title="Copy JSON">
+                                Copy
+                                نسخ
+                            </button>
+                        </div>
+                        <pre id="jsonOutput" class="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg text-xs sm:text-sm text-gray-800 dark:text-gray-200 overflow-x-auto border border-gray-200 dark:border-gray-700 font-mono"></pre>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button id="themeToggle" 
+        class="fixed bottom-4 left-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+        aria-label="تبديل وضع السمة"
+        title="تبديل وضع السمة">
+        <svg xmlns="http://www.w3.org/2000/svg" 
+            class="h-6 w-6" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+            aria-hidden="true">
+            <path stroke-linecap="round" 
+                stroke-linejoin="round" 
+                stroke-width="2" 
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+        <span class="sr-only">تبديل وضع السمة</span>
+    </button>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        // Check for saved user preference, if any, on load
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.classList.toggle('dark', savedTheme === 'dark');
+        
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // Generate JSON function
+        function generateProjectJson() {
+            const folder = document.getElementById('folder').value.trim();
+            const photoCount = parseInt(document.getElementById('photoCount').value) || 1;
+            
+            // Create images array based on photo count
+            const images = [];
+            for (let i = 1; i <= photoCount; i++) {
+                images.push(`./gallery/${folder}/${i}.jpg`);
+            }
+
+            // Create the project object
+            const projectData = {
+                id: folder,
+                title: document.getElementById('projectName').value.trim(),
+                description: document.getElementById('description').value.trim(),
+                date: new Date().toISOString().split('T')[0],
+                thumbnail: `./gallery/${folder}/1.jpg`,
+                images: images,
+                model: `./gallery/${folder}/model.stl`,
+                tags: ["3d", "printing", "custom"],
+                detailsLink: `#${folder}`,
+                material: document.getElementById('material').value.trim(),
+                weight: parseFloat(document.getElementById('weight').value) || 0,
+                resolution: document.getElementById('resolution').value.trim(),
+                price: parseFloat(document.getElementById('price').value) || 0
+            };
+
+            return projectData;
+        }
+
+        // Generate JSON button click handler
+        document.getElementById('generateJsonBtn').addEventListener('click', function() {
+            try {
+                const projectData = generateProjectJson();
+                const jsonOutput = document.getElementById('jsonOutput');
+                const jsonOutputContainer = document.getElementById('jsonOutputContainer');
+                
+                // Format and display JSON
+                jsonOutput.textContent = JSON.stringify(projectData, null, 2);
+                jsonOutputContainer.classList.remove('hidden');
+                
+                // Scroll to the JSON output
+                jsonOutput.scrollIntoView({ behavior: 'smooth' });
+            } catch (error) {
+                console.error('Error generating JSON:', error);
+                alert('حدث خطأ أثناء توليد JSON. يرجى التحقق من صحة البيانات المدخلة.');
+            }
+        });
+
+        // Copy JSON to clipboard
+        document.getElementById('copyJsonBtn').addEventListener('click', function() {
+            const jsonText = document.getElementById('jsonOutput').textContent;
+            navigator.clipboard.writeText(jsonText).then(() => {
+                const copyBtn = document.getElementById('copyJsonBtn');
+                const originalText = copyBtn.textContent;
+                copyBtn.textContent = 'تم النسخ!';
+                setTimeout(() => {
+                    copyBtn.textContent = originalText;
+                }, 2000);
+            });
+        });
+
+        // Form submission
+        document.getElementById('projectForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // For now, just generate JSON on form submission
+            document.getElementById('generateJsonBtn').click();
+        });
+    </script>
+</body>
+</html>

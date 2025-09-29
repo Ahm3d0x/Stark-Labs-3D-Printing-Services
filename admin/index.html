@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="light-theme">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Stark LaBs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        // Brand colors
+                        'brand-indigo': '#4F46E5',
+                        'brand-purple': '#7C3AED',
+                        'brand-yellow': '#F59E0B',
+                        'brand-orange': '#F97316',
+                        // Dark mode colors
+                        'dark-700': '#1E293B',
+                        'dark-800': '#0F172A',
+                        'dark-900': '#020617',
+                        // Light mode colors
+                        'light-100': '#F8FAFC',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Smooth theme transition
+        .transition-colors {
+            transition-property: background-color, border-color, color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        } */
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50 dark:bg-dark-900 text-gray-900 dark:text-gray-100 transition-colors">
+    <!-- Header -->
+    <header class="bg-white dark:bg-dark-800 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex justify-between items-center">
+                <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-indigo to-brand-purple">
+                        ستارك لابز
+                    </span>
+                </h1>
+                <button id="theme-toggle" 
+                        aria-label="تبديل الوضع الليلي"
+                        title="تبديل الوضع الليلي"
+                        class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-indigo">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Page Header -->
+        <div class="mb-8 text-center">
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl">
+                Project Management Panel
+            </h1>
+            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                Add project details to generate a JSON file
+            </p>
+        </div>
+
+        <!-- Project Form -->
+        <div class="bg-white dark:bg-dark-800 rounded-xl shadow-lg overflow-hidden">
+            <form id="project-form" class="p-6">
+                <div class="space-y-6">
+                    <!-- Folder Name -->
+                    <div>
+                        <label for="folder" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            Folder Name
+                        </label>
+                        <input type="text" id="folder" name="folder" required
+                            class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-lg shadow-sm focus:ring-2 focus:ring-brand-indigo focus:border-brand-indigo dark:bg-dark-700 dark:text-white"
+                            placeholder="Example: project-1">
+                    </div>
+
+                    <!-- Project Title -->
+                    <div>
+                        <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            Project Title
+                        </label>
+                        <input type="text" id="title" name="title" required
+                            class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-lg shadow-sm focus:ring-2 focus:ring-brand-indigo focus:border-brand-indigo dark:bg-dark-700 dark:text-white"
+                            placeholder="Enter project title">
+                    </div>
+
+                    <!-- Material Type -->
+                    <div>
+                        <label for="material" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            Material Type
+                        </label>
+                        <select id="material" name="material" required
+                            class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-lg shadow-sm focus:ring-2 focus:ring-brand-indigo focus:border-brand-indigo dark:bg-dark-700 dark:text-white">
+                            <option value="PLA">PLA</option>
+                            <option value="PETG">PETG</option>
+                            <option value="ABS">ABS</option>
+                            <option value="TPU">TPU</option>
+                            <option value="Resin">Resin</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- Weight -->
+                    <div>
+                        <label for="weight" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            Weight (grams)
+                        </label>
+                        <input type="number" id="weight" name="weight" step="0.01" min="0"
+                            class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-lg shadow-sm focus:ring-2 focus:ring-brand-indigo focus:border-brand-indigo dark:bg-dark-700 dark:text-white"
+                            placeholder="0.00">
+                    </div>
+
+                    <!-- Resolution -->
+                    <div>
+                        <label for="resolution" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            Print Resolution
+                        </label>
+                        <input type="text" id="resolution" name="resolution"
+                            class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-lg shadow-sm focus:ring-2 focus:ring-brand-indigo focus:border-brand-indigo dark:bg-dark-700 dark:text-white"
+                            placeholder="Example: 0.2mm">
+                    </div>
+
+                    <!-- Price -->
+                    <div>
+                        <label for="price" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            Price (EGP)
+                        </label>
+                        <div class="relative rounded-lg shadow-sm">
+                            <input type="number" id="price" name="price" step="0.01" min="0" required
+                                class="w-full pr-12 pl-4 py-2 border border-gray-300 dark:border-dark-600 rounded-lg shadow-sm focus:ring-2 focus:ring-brand-indigo focus:border-brand-indigo dark:bg-dark-700 dark:text-white"
+                                placeholder="Enter price">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <span class="text-gray-500 dark:text-gray-400 text-sm">EGP</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Print Time -->
+                    <div>
+                        <label for="printTime" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            Estimated Print Time
+                        </label>
+                        <div class="relative rounded-lg shadow-sm">
+                            <input type="text" id="printTime" name="printTime"
+                                class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-lg shadow-sm focus:ring-2 focus:ring-brand-indigo focus:border-brand-indigo dark:bg-dark-700 dark:text-white"
+                                placeholder="Example: 5 hours, 2 days, etc.">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Design File Link -->
+                    <div>
+                        <label for="designLink" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            Design File Link (Internal use only)
+                        </label>
+                        <input type="url" id="designLink" name="designLink"
+                            class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-lg shadow-sm focus:ring-2 focus:ring-brand-indigo focus:border-brand-indigo dark:bg-dark-700 dark:text-white"
+                            placeholder="https://...">
+                    </div>
+
+                    <!-- Likes -->
+                    <div>
+                        <label for="likes" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            Likes Count
+                        </label>
+                        <input type="number" id="likes" name="likes" min="0" value="125"
+                            class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-lg shadow-sm focus:ring-2 focus:ring-brand-indigo focus:border-brand-indigo dark:bg-dark-700 dark:text-white"
+                            placeholder="Number of likes">
+                    </div>
+
+                    <!-- Description -->
+                    <div>
+                        <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            Short Description
+                        </label>
+                        <textarea id="description" name="description" rows="3"
+                            class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-lg shadow-sm focus:ring-2 focus:ring-brand-indigo focus:border-brand-indigo dark:bg-dark-700 dark:text-white"
+                            placeholder="Enter a short description of the project"></textarea>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="mt-6 flex justify-end space-x-3">
+                    <button type="button" id="generate-json"
+                        class="px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-gradient-to-r from-brand-indigo to-brand-purple hover:from-indigo-600 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-indigo">
+                        Generate JSON
+                    </button>
+                    <button type="button" id="reset-form"
+                        class="px-4 py-2 border border-gray-300 dark:border-dark-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-dark-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors">
+                        Reset Form
+                    </button>
+                </div>
+            </form>
+            
+            <!-- JSON Output -->
+            <div class="p-6 pt-0">
+                <label for="jsonOutput" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Generated JSON:
+                </label>
+                <textarea id="jsonOutput" rows="10"
+                    class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 rounded-lg shadow-sm focus:ring-2 focus:ring-brand-indigo focus:border-brand-indigo dark:bg-dark-700 dark:text-white font-mono text-sm"
+                    readonly></textarea>
+                
+                <div class="mt-2 flex justify-between items-center">
+                    <p class="text-xs text-gray-500 dark:text-gray-400">
+                        Make sure to upload images and STL file in the path: <span id="upload-path" class="font-mono text-gray-700 dark:text-gray-300">/gallery/</span>
+                    </p>
+                    <button id="copy-json" class="text-sm text-brand-indigo hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300">
+                        Copy JSON
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('project-form');
+            const generateBtn = document.getElementById('generate-json');
+            const jsonOutput = document.getElementById('jsonOutput');
+            const copyBtn = document.getElementById('copy-json');
+            const uploadPath = document.getElementById('upload-path');
+
+            // Generate JSON when the button is clicked
+            generateBtn.addEventListener('click', function() {
+                const formData = new FormData(form);
+                const folder = formData.get('folder');
+                const data = {
+                    id: folder,
+                    title: formData.get('title'),
+                    material: formData.get('material'),
+                    weight: parseFloat(formData.get('weight')) || 0,
+                    resolution: formData.get('resolution') || '',
+                    price: parseFloat(formData.get('price')) || 0,
+                    printTime: formData.get('printTime') || '',
+                    designLink: formData.get('designLink') || '',
+                    description: formData.get('description'),
+                    likes: parseInt(formData.get('likes')) || 125,
+                    date: new Date().toISOString().split('T')[0],
+                    thumbnail: `gallery/${folder}/1.jpg`,
+                    model: `gallery/${folder}/model.stl`,
+                    images: Array.from({length: 5}, (_, i) => `gallery/${folder}/${i + 1}.jpg`),
+                    tags: []
+                };
+
+                // Display formatted JSON
+                jsonOutput.value = JSON.stringify(data, null, 2);
+                
+                // Update upload path with the folder name
+                if (folder) {
+                    uploadPath.textContent = `/gallery/${folder}/`;
+                } else {
+                    uploadPath.textContent = '/gallery/your-folder-name/';
+                }
+                
+                // Scroll to the JSON output
+                jsonOutput.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            });
+
+            // Copy JSON to clipboard
+            copyBtn.addEventListener('click', function() {
+                jsonOutput.select();
+                document.execCommand('copy');
+                
+                const originalText = copyBtn.textContent;
+                copyBtn.textContent = 'تم النسخ!';
+                setTimeout(() => {
+                    copyBtn.textContent = originalText;
+                }, 2000);
+            });
+
+            // Prevent form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                generateBtn.click(); // Trigger JSON generation on form submit
+            });
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-dark-800 border-t border-gray-200 dark:border-dark-700 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="text-center text-sm text-gray-500 dark:text-gray-400">
+                <p>© 2025 ستارك لابز. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        
+        // Change the icons inside the button based on previous settings
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            themeToggleLightIcon.classList.remove('hidden');
+            document.documentElement.classList.add('dark');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+            document.documentElement.classList.remove('dark');
+        }
+
+        // Toggle theme on button click
+        themeToggleBtn.addEventListener('click', function() {
+            // Toggle icons
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            // If is set in localStorage
+            if (localStorage.getItem('color-theme')) {
+                // If light, make dark and save in localStorage
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                // If not in localStorage
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

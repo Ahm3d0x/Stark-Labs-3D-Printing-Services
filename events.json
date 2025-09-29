@@ -1,0 +1,16 @@
+[
+    {
+        "id": "event-1",
+        "title": "10% OFF on All Printing Services - Decor & Design (5 Months)",
+        "description": "Enjoy a 10% discount on all decor and design printing services — including cards, banners, posters, custom prints, and more. This offer is valid for 5 months only and applies to both online and in-store orders. Cannot be combined with other promotions. Order now and get premium quality prints at a lower price!",
+        "discount": "10%",
+        "from": "2025-09-30T00:00:00.000Z",
+        "to": "2026-03-02T00:00:00.000Z",
+        "image": "events/event-1/1.png",
+        "tags": [
+          "Hot",
+          "New",
+          "Limited"
+        ]
+      }
+]

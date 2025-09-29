@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="light-theme">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stark Labs</title>
+    <link rel="icon" type="image/png" href="asits/logo.png">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'brand': {
+                            'yellow': '#f59e0b',
+                            'orange': '#f97316',
+                            'indigo': '#6366f1',
+                            'purple': '#8b5cf6',
+                            'gradient': 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+                        },
+                        'dark': {
+                            '900': '#0f172a',
+                            '800': '#1e293b',
+                            '700': '#334155',
+                        },
+                        'light': {
+                            '100': '#f8fafc',
+                            '200': '#f1f5f9',
+                            '300': '#e2e8f0',
+                        },
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        pulse: {
+                            '0%, 100%': { opacity: 1 },
+                            '50%': { opacity: 0.8 },
+                        },
+                    },
+                }
+            },
+            variants: {
+                extend: {
+                    opacity: ['disabled'],
+                },
+            },
+        }
+    </script>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/image-upload.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="bg-light-100 text-gray-900 dark:bg-dark-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Mobile Sidebar Header (Hidden on desktop) -->
+    <div class="fixed left-0 top-0 h-full z-[100] md:hidden">
+        <div class="h-full w-16 bg-white dark:bg-dark-800 shadow-lg flex flex-col items-center justify-between py-12 border-r border-gray-200 dark:border-dark-700">
+            <!-- Logo (Rotated) with better positioning and safe area padding -->
+            <div class="sidebar-logo transform -rotate-90 origin-center whitespace-nowrap text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-indigo to-brand-purple dark:from-brand-yellow dark:to-brand-orange px-4">
+                Stark LaBs
+            </div>
+            
+            <!-- Navigation Icons -->
+            <div class="flex-1 flex flex-col items-center justify-center space-y-6 mobile-nav-icons">
+                <a href="#home" class="nav-icon group" data-section="home" title="Home">
+                    <svg class="w-6 h-6 group-[.active]:text-brand-indigo dark:group-[.active]:text-brand-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                </a>
+
+                <a href="#gallery" class="nav-icon group" data-section="gallery" title="Gallery">
+                    <svg class="w-6 h-6 group-[.active]:text-brand-indigo dark:group-[.active]:text-brand-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                </a>
+                <a href="#events" class="nav-icon group" data-section="events" title="Events">
+                  <svg class="w-6 h-6 group-[.active]:text-brand-indigo dark:group-[.active]:text-brand-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+              </a>
+                <a href="#services" class="nav-icon group" data-section="services" title="Services">
+                    <svg class="w-6 h-6 group-[.active]:text-brand-indigo dark:group-[.active]:text-brand-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                </a>
+                <a href="#pricing" class="nav-icon group" data-section="pricing" title="Pricing">
+                    <svg class="w-6 h-6 group-[.active]:text-brand-indigo dark:group-[.active]:text-brand-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </a>
+                <a href="#order"  class="nav-icon group" data-section="order" title="Order Now">
+                    <svg class="w-6 h-6 group-[.active]:text-brand-indigo dark:group-[.active]:text-brand-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                </a>
+                <a href="#about" class="nav-icon group" data-section="about" title="About">
+                    <svg class="w-6 h-6 group-[.active]:text-brand-indigo dark:group-[.active]:text-brand-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </a>
+
+            </div>
+            
+            <!-- Bottom Icons -->
+            <div class="flex flex-col items-center space-y-6 pb-8 mobile-bottom-icons">
+                <button id="mobile-cart-toggle" type="button" class="relative group p-2 rounded-full hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors" title="Cart">
+                    <svg class="w-6 h-6 text-gray-600 dark:text-gray-300 group-hover:text-brand-indigo dark:group-hover:text-brand-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <span id="mobile-cart-item-count" class="absolute -top-1 -right-1 bg-brand-orange text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                </button>
+                
+                <button id="mobile-theme-toggle" class="w-10 h-10 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors" aria-label="Toggle theme" title="Toggle theme">
+                    <span class="dark:hidden">🌙</span>
+                    <span class="hidden dark:inline">☀️</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Desktop Header (Hidden on mobile) -->
+    <header class="hidden md:block bg-white dark:bg-dark-800 shadow-md sticky top-0 z-50 border-b border-gray-200 dark:border-dark-700">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="logo text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-indigo to-brand-purple dark:from-brand-yellow dark:to-brand-orange">
+            Stark LaBs
+            </div>
+            <div class="nav-links flex items-center gap-4 sm:gap-6">
+                <a href="#home" class="nav-link active" data-section="home">Home</a>
+                <a href="#gallery" class="nav-link" data-section="gallery">Gallery</a>
+                <a href="#events" class="nav-link" data-section="events">Events</a>
+
+                <a href="#services" class="nav-link" data-section="services">Services</a>
+                <a href="#pricing" class="nav-link" data-section="pricing">Pricing</a>
+                <a href="#order" class="nav-link" data-section="order">Order</a>
+                <a href="#about" class="nav-link" data-section="about">About</a>
+
+                <button id="cart-toggle-button" type="button" class="relative text-gray-600 dark:text-gray-300 hover:text-brand-indigo dark:hover:text-brand-yellow focus:outline-none">
+                    <span class="sr-only">Open cart</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <span id="cart-item-count" class="absolute -top-2 -right-2 bg-brand-orange text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                </button>
+
+                <button id="theme-toggle" class="theme-toggle w-10 h-10 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors" aria-label="Toggle theme">
+                    <span class="dark:hidden">🌙</span>
+                    <span class="hidden dark:inline">☀️</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="relative">
+        <!-- Loading overlay -->
+        <div id="loading-overlay" class="fixed inset-0 bg-white dark:bg-dark-900 z-[9997] flex items-center justify-center transition-opacity duration-300">
+            <div class="animate-pulse flex flex-col items-center">
+                <div class="w-16 h-16 border-4 border-brand-indigo border-t-transparent rounded-full animate-spin"></div>
+                <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">Loading...</p>
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden" dir="auto">
+            <!-- Background Image Container -->
+            <div class="absolute inset-0 z-0 overflow-hidden">
+                <img src="./asits/panar.png" alt="Background" class="w-full h-full object-cover opacity-50 dark:opacity-30">
+            </div>
+            
+            <!-- Hero Content -->
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center animate-fade-in">
+                <div class="max-w-4xl mx-auto relative">
+                    <!-- Logo with Glow Effect -->
+                    <div class="mb-8 animate-bounce-slow relative z-10">
+                        <div class="relative inline-block">
+                            <div class="absolute -inset-4 bg-gradient-to-r from-brand-yellow/30 to-brand-orange/30 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+                            <img src="./asits/logo.png" alt="Stark Labs Logo" class="relative mx-auto border-4 border-dark-900 rounded-full h-32 w-auto sm:h-40 md:h-48 z-10">
+                        </div>
+                    </div>
+                    
+                    <!-- Company Name -->
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 relative z-10">
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-yellow to-brand-orange">
+                            Stark LaBs
+                        </span>
+                    </h1>
+                    
+                    <!-- Arabic Slogan -->
+                    <p class="text-xl sm:text-2xl text-white/90 font-medium mb-8 max-w-2xl mx-auto">
+                        Build your dream with us – Turn your idea into a 3D reality!
+                    </p>
+                    
+                    <!-- Scroll Indicator -->
+                    <div class="mt-16 animate-bounce">
+                        <a href="#about" 
+                           aria-label="Scroll down to next section"
+                           title="Scroll down"
+                           class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-yellow">
+                            <svg xmlns="http://www.w3.org/2000/svg" 
+                                 class="h-6 w-6 text-white" 
+                                 fill="none" 
+                                 viewBox="0 0 24 24" 
+                                 stroke="currentColor"
+                                 aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sections -->
+        <section id="home" class="section active min-h-screen flex items-center justify-center transition-opacity duration-300">
+            <div class="hero relative overflow-hidden py-16 sm:py-24 lg:py-32 w-full bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-dark-900 dark:to-dark-800">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-brand-indigo via-brand-purple to-brand-orange">
+                        3D Printing & Design
+                    </h1>
+                    <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
+                        Transforming ideas into physical reality
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-4 mt-8">
+                        <a href="#services" class="btn-primary px-8 py-3 text-lg">Explore Our Services</a>
+                        <a href="#gallery" class="btn-secondary px-8 py-3 text-lg">View Gallery</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+          
+        <section id="gallery" class="section min-h-screen py-20 bg-gray-50 dark:bg-dark-800  transition-opacity duration-300">
+            <div class="px-4 sm:px-6 lg:px-8 w-full">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 relative inline-block">
+                    <span>Our Work</span>
+                    <span class="absolute bottom-[-8px] left-1/2 w-16 h-1 bg-gradient-to-r from-brand-yellow to-brand-orange rounded-full transform -translate-x-1/2"></span>
+                </h2>
+                <div id="gallery-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+                    <!-- Gallery items will be inserted here by JavaScript -->
+                </div>
+            </div>
+        </section>
+        <section id="events" class="py-20 bg-white dark:bg-dark-800 text-gray-800 dark:text-white">
+          <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header -->
+            <div class="text-center mb-12">
+              <h2 class="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-yellow to-brand-orange dark:from-brand-yellow dark:to-brand-purple mb-4 animate-fade-in">
+                🎉 Special Events & Promotions
+              </h2>
+              <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg animate-fade-in delay-100">
+                Don’t miss our limited-time offers and exciting seasonal events.
+              </p>
+              <div class="w-20 h-1 bg-gradient-to-r from-brand-yellow to-brand-orange mx-auto mt-4 rounded-full"></div>
+            </div>
+        
+            <!-- Events Grid -->
+            <div id="events-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              <!-- Cards will be injected dynamically by JavaScript -->
+            </div>
+          </div>
+        </section>
+        
+
+        <section id="services" class="py-20 bg-white dark:bg-dark-900 text-gray-800 dark:text-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+              <!-- Section Header -->
+              <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-indigo to-brand-purple dark:from-brand-yellow dark:to-brand-orange mb-4 animate-fade-in">
+                  Our Services
+                </h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg animate-fade-in delay-100">
+                  Discover the creative and technical services Stark Labs proudly offers to help you build, design, and innovate.
+                </p>
+              </div>
+          
+              <!-- Services Cards -->
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 3D Printing Card -->
+                <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-lg p-6 transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300 animate-slide-in-up">
+                  <h3 class="text-xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-brand-orange to-brand-indigo dark:from-brand-purple dark:to-brand-yellow">
+                    3D Printing
+                  </h3>
+                  <p class="text-gray-700 dark:text-gray-300 mb-2">
+                    High-precision 3D printing using PLA and other materials with customizable resolution and finishes.
+                  </p>
+                  <ul class="list-disc pl-5 text-sm text-gray-600 dark:text-orange-400">
+                    <li>Fast prototyping</li>
+                    <li>High-quality finishes</li>
+                    <li>Durable materials</li>
+                  </ul>
+                </div>
+          
+                <!-- 3D Design Card -->
+                <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-lg p-6 transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300 animate-slide-in-up delay-100">
+                  <h3 class="text-xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-brand-orange to-brand-indigo dark:from-brand-purple dark:to-brand-yellow">
+                    3D Design
+                  </h3>
+                  <p class="text-gray-700 dark:text-gray-300 mb-2">
+                    Custom 3D modeling tailored to your ideas with full support for modifications and previews.
+                  </p>
+                  <ul class="list-disc pl-5 text-sm text-gray-600 dark:text-orange-400">
+                    <li>Professional CAD design</li>
+                    <li>Iterative improvement</li>
+                    <li>Printable outputs</li>
+                  </ul>
+                </div>
+          
+                <!-- Video Editing Card -->
+                <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-lg p-6 transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300 animate-slide-in-up delay-200">
+                  <h3 class="text-xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-brand-orange to-brand-indigo dark:from-brand-purple dark:to-brand-yellow">
+                    Video Editing
+                  </h3>
+                  <p class="text-gray-700 dark:text-gray-300 mb-2">
+                    Smooth and creative editing for shorts, YouTube videos, and promotional content.
+                  </p>
+                  <ul class="list-disc pl-5 text-sm text-gray-600 dark:text-orange-400">
+                    <li>CapCut & Premiere Pro workflows</li>
+                    <li>Transitions, effects & music</li>
+                    <li>Short-form and long-form formats</li>
+                  </ul>
+                </div>
+          
+                <!-- Web & Desktop Development Card -->
+                <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-lg p-6 transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300 animate-slide-in-up">
+                  <h3 class="text-xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-brand-orange to-brand-indigo dark:from-brand-purple dark:to-brand-yellow">
+                    Web & Desktop Development
+                  </h3>
+                  <p class="text-gray-700 dark:text-gray-300 mb-2">
+                    We build responsive websites, modern interfaces, and desktop software for Windows/Linux.
+                  </p>
+                  <ul class="list-disc pl-5 text-sm text-purple-600 dark:text-orange-400">
+                    <li>Full-stack web solutions</li>
+                    <li>Cross-platform apps</li>
+                    <li>Modern UI/UX</li>
+                  </ul>
+                </div>
+          
+                <!-- Microsoft Office Services Card -->
+                <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-lg p-6 transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300 animate-slide-in-up delay-100">
+                  <h3 class="text-xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-brand-orange to-brand-indigo dark:from-brand-purple dark:to-brand-yellow">
+                    Microsoft Office Services
+                  </h3>
+                  <p class="text-gray-700 dark:text-gray-300 mb-2">
+                    From Excel reports to PowerPoint designs and Word templates, we deliver office productivity at its finest.
+                  </p>
+                  <ul class="list-disc pl-5 text-lg text-gray-600 dark:text-orange-400">
+                    <li>Document formatting</li>
+                    <li>Automated spreadsheets</li>
+                    <li>Professional presentations</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <!-- Animations -->
+          <style>
+          @keyframes fade-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          
+          @keyframes slide-in-up {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          
+          .animate-fade-in {
+            animation: fade-in 0.8s ease-out forwards;
+          }
+          
+          .animate-slide-in-up {
+            animation: slide-in-up 0.8s ease-out forwards;
+          }
+          
+          .delay-100 { animation-delay: 0.1s; }
+          .delay-200 { animation-delay: 0.2s; }
+          </style>
+          
+          <section id="pricing" class="py-20 bg-white dark:bg-dark-900 text-gray-800 dark:text-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+              <!-- Section Header -->
+              <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-indigo to-brand-purple dark:from-brand-yellow dark:to-brand-orange mb-4 animate-fade-in">
+                  Pricing Policy
+                </h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg animate-fade-in delay-100">
+                  Understand how we calculate the cost of your 3D printed model based on multiple technical and service factors.
+                </p>
+              </div>
+          
+              <!-- Pricing Elements Cards -->
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Weight Card -->
+                <div class="bg-yellow-50 dark:bg-dark-700 border border-yellow-200 dark:border-yellow-500 rounded-2xl shadow-md p-6 animate-slide-in-up delay-300 text-center transition-transform transform hover:-translate-y-1 hover:shadow-lg">
+                  <div class="mb-4 text-4xl text-brand-indigo dark:text-brand-yellow">
+                    ⚖️
+                  </div>
+                  <h3 class="text-xl text-brand-indigo dark:text-brand-orange font-bold mb-2">Model Weight</h3>
+                  <p class="text-gray-700 dark:text-gray-300 text-sm">
+                    Heavier models require more filament, directly increasing the printing cost.
+                  </p>
+                </div>
+          
+                <!-- Filament Type Card -->
+                <div class="bg-yellow-50 dark:bg-dark-700 border border-yellow-200 dark:border-yellow-500 rounded-2xl shadow-md p-6 animate-slide-in-up delay-300 text-center transition-transform transform hover:-translate-y-1 hover:shadow-lg">
+                  <div class="mb-4 text-4xl text-brand-purple dark:text-brand-orange">
+                    🧵
+                  </div>
+                  <h3 class="text-xl text-brand-indigo dark:text-brand-orange font-bold mb-2">Filament Type</h3>
+                  <p class="text-gray-700 dark:text-gray-300 text-sm">
+                    Different materials have different costs and printing requirements (e.g. PLA, PETG, ABS).
+                  </p>
+                </div>
+          
+                <!-- Print Time Card -->
+                <div class="bg-yellow-50 dark:bg-dark-700 border border-yellow-200 dark:border-yellow-500 rounded-2xl shadow-md p-6 animate-slide-in-up delay-300 text-center transition-transform transform hover:-translate-y-1 hover:shadow-lg">
+                  <div class="mb-4 text-4xl text-brand-orange dark:text-brand-purple">
+                    ⏱️
+                  </div>
+                  <h3 class="text-xl font-bold text-brand-indigo dark:text-brand-orange mb-2">Print Time</h3>
+                  <p class="text-gray-700 dark:text-gray-300 text-sm">
+                    Longer print jobs mean higher energy usage and machine time, affecting the total cost.
+                  </p>
+                </div>
+          
+                <!-- Resolution Card -->
+                <div class="bg-yellow-50 dark:bg-dark-700 border border-yellow-200 dark:border-yellow-500 rounded-2xl shadow-md p-6 animate-slide-in-up delay-300 text-center transition-transform transform hover:-translate-y-1 hover:shadow-lg">
+                  <div class="mb-4 text-4xl text-brand-yellow dark:text-brand-indigo">
+                    🎯
+                  </div>
+                  <h3 class="text-xl font-bold text-brand-indigo dark:text-brand-orange mb-2">Resolution</h3>
+                  <p class="text-gray-700 dark:text-gray-300 text-sm">
+                    Higher resolution results in more detailed prints but takes longer to produce, increasing cost.
+                  </p>
+                </div>
+          
+                <!-- Maintenance Card -->
+                <div class="bg-yellow-50 dark:bg-dark-700 border border-yellow-200 dark:border-yellow-500 rounded-2xl shadow-md p-6 animate-slide-in-up delay-300 text-center transition-transform transform hover:-translate-y-1 hover:shadow-lg">
+                  <div class="mb-4 text-4xl text-red-500 dark:text-red-400">
+                    🛠️
+                  </div>
+                  <h3 class="text-xl font-bold text-brand-indigo dark:text-brand-orange mb-2">Maintenance & Supervision</h3>
+                  <p class="text-gray-700 dark:text-gray-300 text-sm">
+                    Includes printer maintenance, quality checks, and human supervision time during printing.
+                  </p>
+                </div>
+                <div class="bg-yellow-50 dark:bg-dark-700 border border-yellow-200 dark:border-yellow-500 rounded-2xl shadow-md p-6 animate-slide-in-up delay-300 text-center transition-transform transform hover:-translate-y-1 hover:shadow-lg">
+                    <div class="mb-3 text-3xl text-red-500 dark:text-red-400">
+                      ⚠️
+                    </div>
+                    <h3 class="text-lg font-bold text-brand-indigo dark:text-brand-orange mb-2">Note</h3>
+                    <p class="text-sm text-gray-700 dark:text-gray-300 ">
+                      Currently, we don't offer a live calculator. Contact us for a custom quote based on your model.
+                    </p>
+                  </div>
+              </div>
+            </div>
+          </section>
+          
+          <!-- Animations -->
+          <style>
+          @keyframes fade-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          
+          @keyframes slide-in-up {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          
+          .animate-fade-in {
+            animation: fade-in 0.8s ease-out forwards;
+          }
+          
+          .animate-slide-in-up {
+            animation: slide-in-up 0.8s ease-out forwards;
+          }
+          
+          .delay-100 { animation-delay: 0.1s; }
+          .delay-200 { animation-delay: 0.2s; }
+          </style>
+          
+
+        <section id="order" class="min-h-screen py-12 sm:py-20 bg-white dark:bg-dark-900">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+              <!-- Section Header -->
+              <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-indigo to-brand-purple dark:from-brand-yellow dark:to-brand-orange mb-4">
+                  Place Your Order
+                </h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                  Get a quote for your custom 3D printing project. Our team will review your request within 24 hours.
+                </p>
+              </div>
+        
+              <!-- Form Container -->
+              <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-xl overflow-hidden max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <!-- Left Side - Order Form -->
+                  <div class="p-6 sm:p-8 lg:p-10">
+                    <form id="orderForm" class="space-y-6">
+                      <!-- Full Name -->
+                      <div class="space-y-2">
+                        <label for="fullName" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                          Full Name <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="fullName" name="fullName" required
+                               class="w-full px-4 py-3 bg-white dark:bg-dark-700 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-brand-indigo dark:focus:ring-brand-yellow focus:outline-none dark:text-white"
+                               placeholder="John Doe">
+                      </div>
+        
+                      <!-- Email -->
+                      <div class="space-y-2">
+                        <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                          Email <span class="text-red-500">*</span>
+                        </label>
+                        <input type="email" id="email" name="email" required
+                               class="w-full px-4 py-3 bg-white dark:bg-dark-700 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-brand-indigo dark:focus:ring-brand-yellow focus:outline-none dark:text-white"
+                               placeholder="your.email@example.com">
+                      </div>
+        
+                      <!-- Phone Number -->
+                      <div class="space-y-2">
+                        <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                          Phone Number <span class="text-red-500">*</span>
+                        </label>
+                        <input type="tel" id="phone" name="phone" required
+                               class="w-full px-4 py-3 bg-white dark:bg-dark-700 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-brand-indigo dark:focus:ring-brand-yellow focus:outline-none dark:text-white"
+                               placeholder="+20 123 456 7890">
+                      </div>
+        
+                      <!-- Gender and Age -->
+                      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Gender -->
+                        <div class="space-y-2">
+                          <label for="gender" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Gender (optional)
+                          </label>
+                          <select id="gender" name="gender"
+                                  class="w-full px-4 py-3 bg-white dark:bg-dark-700 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-brand-indigo dark:focus:ring-brand-yellow focus:outline-none dark:text-white">
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                            <option value="prefer-not-to-say">Prefer not to say</option>
+                          </select>
+                        </div>
+        
+                        <!-- Age -->
+                        <div class="space-y-2">
+                          <label for="age" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Age (optional)
+                          </label>
+                          <input type="number" id="age" name="age" min="13" max="120"
+                                 class="w-full px-4 py-3 bg-white dark:bg-dark-700 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-brand-indigo dark:focus:ring-brand-yellow focus:outline-none dark:text-white"
+                                 placeholder="Your age">
+                        </div>
+                      </div>
+        
+                      <!-- Service Type -->
+                      <div class="space-y-2">
+                        <label for="serviceType" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                          Select a Service <span class="text-red-500">*</span>
+                        </label>
+                        <select id="serviceType" name="serviceType" required
+                                class="w-full px-4 py-3 bg-white dark:bg-dark-700 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-brand-indigo dark:focus:ring-brand-yellow focus:outline-none dark:text-white">
+                          <option value="">Choose a service</option>
+                          <option value="rapid-prototyping">Rapid Prototyping</option>
+                          <option value="3d-design">3D Design Service</option>
+                          <option value="production">Production</option>
+                          <option value="custom">Custom Project</option>
+                        </select>
+                      </div>
+        
+                      <!-- Project Description -->
+                      <div class="space-y-2">
+                        <label for="projectDescription" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                          Project Description <span class="text-red-500">*</span>
+                        </label>
+                        <textarea id="projectDescription" name="projectDescription" rows="4" required
+                                  class="w-full px-4 py-3 bg-white dark:bg-dark-700 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-brand-indigo dark:focus:ring-brand-yellow focus:outline-none dark:text-white resize-none"
+                                  placeholder="Describe your project in detail, including dimensions, materials, and requirements..."></textarea>
+                      </div>
+        
+                      <!-- Additional Notes -->
+                      <div class="space-y-2">
+                        <label for="additionalNotes" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                          Additional Notes (optional)
+                        </label>
+                        <textarea id="additionalNotes" name="additionalNotes" rows="3"
+                                  class="w-full px-4 py-3 bg-white dark:bg-dark-700 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-brand-indigo dark:focus:ring-brand-yellow focus:outline-none dark:text-white resize-none"
+                                  placeholder="Any other notes or preferences..."></textarea>
+                      </div>
+        
+                      <!-- Terms -->
+                      <div class="flex items-start mt-6">
+                        <input id="terms" name="terms" type="checkbox" required
+                               class="h-4 w-4 mt-1 text-brand-indigo dark:text-brand-yellow focus:ring-brand-indigo dark:focus:ring-brand-yellow border-gray-300 dark:border-dark-600 rounded">
+                        <label for="terms" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+                          I agree to the <a href="#" class="text-brand-indigo dark:text-brand-yellow hover:underline">Terms & Conditions</a>
+                          and <a href="#" class="text-brand-indigo dark:text-brand-yellow hover:underline">Privacy Policy</a> <span class="text-red-500">*</span>
+                        </label>
+                      </div>
+
+
+
+
+                  </div>
+        
+                  <!-- Right Side - Support Info -->
+                  <div class="bg-gradient-to-br from-brand-indigo to-brand-purplelg:p-10 text-white">
+
+                    <div class="bg-gradient-to-br from-brand-indigo p-4 to-brand-purple lg:p-10 text-white rounded-2xl shadow-xl">
+                        <div class="flex flex-col justify-between h-full">
+                          
+
+                          <div class="">
+                            <h3 class="text-xl font-bold flex items-center gap-2 bg-dark-900 px-4 py-3 rounded-t-lg">
+                              <svg class="w-5 h-5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                              </svg>
+                              Your Order Summary
+                            </h3>
+                          </div>
+                      
+                          <!-- Order Items -->
+                          <div class="bg-gradient-to-r from-yellow-500 to-orange-500 backdrop-blur-sm p-5 rounded-b-lg space-y-4 overflow-y-auto max-h-[400px]">
+                            <div id="product-name-right" class=" text-black text-sm font-medium">
+                              <!-- سيتم إدخال الطلبات هنا عبر JS -->
+                              <p class="italic opacity-70">No items in cart.</p>
+                            </div>
+                          </div>
+                          <hr class="my-6 border-white/20">
+                        </div>
+                      </div>
+                      <hr>
+                          <div id="device-hint" class="m-2 p-4 text-sm text-gray-300 dark:text-gray-300 bg-gradient-to-r from-gray-800 to-gray-700  dark:bg-yellow-200 rounded-lg border border-yellow-300 dark:border-dark-600">
+                        <!-- سيتم استبداله تلقائيًا -->
+                        Loading tips...
+                      </div>
+                      <hr>
+ <!-- Submit Buttons -->
+ <div class="grid grid-cols-1 p-4 gap-4 mt-2 mb-2 sm:grid-cols-2">
+    <button type="button" id="whatsapp-submit"
+            class="relative flex justify-center items-center px-6 py-3.5 text-sm  rounded-lg shadow-sm text-black font-bold bg-gradient-to-r from-green-400 to-green-700 hover:from-green-300 hover:to-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 transition-all duration-200 transform hover:-translate-y-0.5">
+      Send via WhatsApp
+
+    </button>
+    <button type="submit"
+            class="flex justify-center items-center px-6 py-3.5 text-sm font-medium rounded-lg shadow-sm text-white bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-orange-500 hover:to-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 transform hover:-translate-y-0.5">
+      Send via Email
+    </button>
+  </div>
+</form>
+                    </form>
+                      
+                      <!-- Help Section -->
+                      <div class="p-4">
+                        <hr>
+                        <br>
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                          <svg class="w-5 h-5 mr-2 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 0110.586 10.586z"/>
+                          </svg>
+                          Need Help?
+                        </h3>
+                        <ul class="space-y-3 text-sm">
+                          <li>
+                            <a href="tel:+201551415827" class="flex items-center hover:text-white/90 transition-colors">
+                              <svg class="h-4 w-4 mr-2 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                              </svg>
+                              +20 1551415827
+                            </a>
+                          </li>
+                          <li>
+                            <a href="mailto:3d.stark.labs@gmail.com" class="flex items-center hover:text-white/90 transition-colors">
+                              <svg class="h-4 w-4 mr-2 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                              </svg>
+                              3d.stark.labs@gmail.com
+                            </a>
+                          </li>
+                          <li>
+                            <a href="https://www.facebook.com/share/1AcVrW3uM3/" target="_blank" rel="noopener" class="flex items-center hover:text-white/90 transition-colors">
+                              <svg class="h-4 w-4 mr-2 opacity-80" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3V2z"/>
+                              </svg>
+                              Visit our Facebook
+                            </a>
+                          </li>
+                          <li>
+                            <a href="https://wa.link/4xvm8h" target="_blank" rel="noopener" class="flex items-center hover:text-white/90 transition-colors">
+                              <svg class="h-4 w-4 mr-2 opacity-80" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.96a1.03 1.03 0 00-.597-.173 1.1 1.1 0 00-.383.124c-.273.142-1.027.38-1.027.38s-.613.197-.936.306a2.02 2.02 0 00-.613.3c-.158.1-.47.297-.47.722 0 .425.297.867.414 1.016.117.148 1.759.866 2.03.96.272.093.768.125 1.04.125.273 0 .768-.032 1.04-.125.118-.05.297-.148.415-.297.117-.149.234-.345.351-.644.058-.149.117-.446.117-.867s-.059-.718-.117-.867a1.67 1.67 0 00-.3-.446zM12 22.75c-5.658 0-10.25-4.593-10.25-10.25S6.342 2.25 12 2.25 22.25 6.843 22.25 12.5 17.658 22.75 12 22.75zm0-20c-4.554 0-8.25 3.696-8.25 8.25s3.696 8.25 8.25 8.25 8.25-3.696 8.25-8.25S16.554 4.25 12 4.25z"/>
+                              </svg>
+                              Chat via WhatsApp
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div> 
+                </div>
+              </div>
+            </div>
+          </section>
+    </div>
+
+    <section id="about" class="py-20 bg-white dark:bg-dark-900 text-gray-800 dark:text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <!-- Section Header -->
+          <div class="text-center mb-12">
+            <h2 class="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-indigo to-brand-purple dark:from-brand-yellow dark:to-brand-orange mb-4">
+              About Stark Labs
+            </h2>
+            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg">
+              Founded on <strong>July 8, 2025</strong>, Stark Labs is a rising startup redefining creativity, design, and digital manufacturing.
+            </p>
+          </div>
+      
+          <!-- About Description -->
+          <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-xl p-8 sm:p-10 mb-16">
+            <p class="text-base sm:text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+              Stark Labs is more than a 3D printing shop — it's a full digital lab. We specialize in <strong>3D printing</strong>, <strong>3D design</strong>, <strong>web and desktop development</strong>, <strong>video editing</strong>, and complete <strong>Microsoft Office services</strong>. Our team combines innovation, technical expertise, and creative power to bring any idea to life. Whether you're a business or a hobbyist, we've got a solution tailored for you.
+            </p>
+            <div class="mt-6 text-base text-gray-700 dark:text-gray-300">
+              <p><strong>Our vision:</strong> To become one of the largest digital fabrication companies in the Middle East.</p>
+              <p><strong>Our future:</strong> Expanding to CNC, producing our own filaments, and building a strong ecosystem for creators.</p>
+            </div>
+          </div>
+      
+          <!-- Team Cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-10">
+            <!-- Founder Card -->
+            <div class="bg-white dark:bg-dark-800 shadow-md rounded-xl p-6 text-center">
+              <img src="asits/1.jpg" alt="Ahmed Mohamed Attia" class="w-28 h-28 mx-auto rounded-full shadow-md mb-4">
+              <h3 class="text-xl font-semibold mb-1">Ahmed Mohamed Attia</h3>
+              <p class="text-sm text-orange-600 dark:text-orange-400 mb-2">Founder & CEO</p>
+              <p class="text-sm text-gray-700 dark:text-gray-300">Electronics & Communication Engineering Student - Zagazig University</p>
+              <div class="flex justify-center space-x-4 mt-4">
+                <a href="mailto:ahm3d.m.attia@gmail.com" class="text-brand-indigo hover:underline">Email</a>
+                <a href="https://www.linkedin.com/in/ahmed-m-attia-757aa6292/" target="_blank" rel="noopener noreferrer" class="text-brand-purple hover:underline">LinkedIn</a>
+              </div>
+            </div>
+      
+            <!-- Co-Founder Card -->
+            <div class="bg-white dark:bg-dark-800 shadow-md rounded-xl p-6 text-center">
+              <img src="asits/3.jpg" alt="Co-Founder" class="w-28 h-28 mx-auto rounded-full shadow-md mb-4">
+              <h3 class="text-xl font-semibold mb-1">Muhammad Attia EL-Boraye</h3>
+              <p class="text-sm text-orange-600 dark:text-orange-400 mb-2">Co-Founder & Assistant Manager</p>
+              <p class="text-sm text-gray-700 dark:text-gray-300">Mechanical Power Engineering Student - Zagazig University</p>
+              <div class="flex justify-center space-x-4 mt-4">
+                <a href="mailto:muhammadattia05@gmail.com" class="text-brand-indigo hover:underline">Email</a>
+                <a href="https://www.linkedin.com/in/muhammad-attia-03320a308/" target="_blank" rel="noopener noreferrer" class="text-brand-purple hover:underline">LinkedIn</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+    <!-- Events Section -->
+
+    <!-- Back to Top Button -->
+    <a href="#" id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-gradient-to-r from-brand-indigo to-brand-purple text-white flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 opacity-0 invisible">
+        ↑
+    </a>
+
+    <!-- Project Modal -->
+    <div id="project-modal" data-project-id="" class="fixed inset-0 z-[9998] p-4 hidden items-center justify-center opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <!-- Modal Backdrop -->
+        <div id="modal-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm"></div>
+    
+        <!-- Modal Panel -->
+        <div id="modal-panel" class="absolute  w-full max-w-6xl max-h-[90vh] bg-white dark:bg-dark-800 rounded-2xl shadow-2xl flex flex-col md:flex-row overflow-hidden transform scale-95 transition-transform left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 duration-300">
+            <!-- Close Button -->
+            <button type="button" id="modal-close-button" class="absolute top-4 right-4 z-20 rounded-full p-2 bg-white/80 dark:bg-dark-700/80 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-indigo transition-all">
+                <span class="sr-only">Close</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+    
+            <!-- Left Column - Media (Image Gallery) -->
+            <div class="w-full md:w-3/5 flex-shrink-0 flex flex-col bg-gray-100 dark:bg-dark-900 p-4">
+                <!-- Main Image Display -->
+                <div class="relative flex-grow rounded-xl overflow-hidden group">
+                    <img id="modal-main-image" src="" alt="Project main image" class="w-full h-full object-contain transition-transform duration-300 ease-in-out">
+                    <!-- Navigation Buttons -->
+                    <button id="modal-prev-image" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/50 dark:bg-black/50 p-2 rounded-full text-gray-800 dark:text-white hover:bg-white dark:hover:bg-black focus:outline-none opacity-0 group-hover:opacity-100 transition-opacity">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <button id="modal-next-image" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/50 dark:bg-black/50 p-2 rounded-full text-gray-800 dark:text-white hover:bg-white dark:hover:bg-black focus:outline-none opacity-0 group-hover:opacity-100 transition-opacity">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+                <!-- Thumbnail Gallery -->
+                <div id="modal-thumbnail-gallery" class="flex-shrink-0 mt-4 space-x-3 overflow-x-auto py-1 -mx-1">
+                    <!-- Thumbnails will be inserted here by JavaScript -->
+                </div>
+            </div>
+    
+            <!-- Right Column - Details -->
+            <div class="w-full md:w-2/5 flex flex-col p-6 sm:p-8 overflow-y-auto">
+                <!-- Title and Like -->
+                <div class="flex justify-between items-start mb-4">
+                    <h2 id="modal-project-title" class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white"></h2>
+                    <div class="flex items-center text-gray-500 dark:text-gray-400">
+                        <button class="like-button p-1.5 rounded-full hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors group" aria-label="Like this project">
+                            <span class="text-red-500 group-hover:text-red-600 dark:group-hover:text-red-400 text-xl transition-colors">♥</span>
+                            <span id="modal-likes" class="ml-1 text-sm font-medium">0</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Description -->
+                <p id="modal-project-description" class="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed"></p>
+                
+                <!-- Specifications Grid -->
+                <div class="mb-8">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4 pb-2 border-b border-gray-200 dark:border-dark-700">Specifications</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Material -->
+                        <div class="flex items-start p-3 rounded-lg bg-gray-50 dark:bg-dark-700/50">
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gradient-to-r from-brand-indigo/10 to-brand-purple/10 dark:from-brand-indigo/20 dark:to-brand-purple/20 flex items-center justify-center text-brand-indigo dark:text-brand-purple mr-3">
+                                📦
+                            </div>
+                            <div>
+                                <p class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">Material</p>
+                                <p id="modal-project-material" class="font-medium text-gray-900 dark:text-white">-</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Weight -->
+                        <div class="flex items-start p-3 rounded-lg bg-gray-50 dark:bg-dark-700/50">
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gradient-to-r from-brand-indigo/10 to-brand-purple/10 dark:from-brand-indigo/20 dark:to-brand-purple/20 flex items-center justify-center text-brand-indigo dark:text-brand-purple mr-3">
+                                ⚖️
+                            </div>
+                            <div>
+                                <p class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">Weight</p>
+                                <p id="modal-project-weight" class="font-medium text-gray-900 dark:text-white">-</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Resolution -->
+                        <div class="flex items-start p-3 rounded-lg bg-gray-50 dark:bg-dark-700/50">
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gradient-to-r from-brand-indigo/10 to-brand-purple/10 dark:from-brand-indigo/20 dark:to-brand-purple/20 flex items-center justify-center text-brand-indigo dark:text-brand-purple mr-3">
+                                📏
+                            </div>
+                            <div>
+                                <p class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">Resolution</p>
+                                <p id="modal-project-resolution" class="font-medium text-gray-900 dark:text-white">-</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Print Time -->
+                        <div class="flex items-start p-3 rounded-lg bg-gray-50 dark:bg-dark-700/50">
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gradient-to-r from-brand-indigo/10 to-brand-purple/10 dark:from-brand-indigo/20 dark:to-brand-purple/20 flex items-center justify-center text-brand-indigo dark:text-brand-purple mr-3">
+                                ⏱️
+                            </div>
+                            <div>
+                                <p class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-0.5">Print Time</p>
+                                <p id="modal-project-print-time" class="font-medium text-gray-900 dark:text-white">-</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Price -->
+                <div class="mb-8 p-4 rounded-xl bg-gradient-to-r from-brand-indigo/5 to-brand-purple/5 dark:from-brand-indigo/10 dark:to-brand-purple/10 border border-indigo-100 dark:border-indigo-900/20">
+                    <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Price</p>
+                    <div class="flex items-baseline space-x-2">
+                        <p id="modal-project-price" class="text-2xl font-bold bg-gradient-to-r from-brand-indigo to-brand-purple bg-clip-text text-transparent">-</p>
+                        <span class="text-xs text-gray-500 dark:text-gray-400">EGP</span>
+                    </div>
+                    <div class="mt-2 space-y-0.5">
+                        <p class="text-xs text-gray-500 dark:text-gray-400">This price includes VAT</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">Shipping is calculated separately based on your location</p>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="mt-auto grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <!-- Add to Cart -->
+                    <button type="button" id="modal-add-to-cart" class="group flex items-center justify-center px-4 py-3 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-gradient-to-r from-brand-indigo to-brand-purple hover:from-indigo-600 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 transform hover:-translate-y-0.5">
+                        <svg class="flex-shrink-0 -ml-1 mr-2 h-5 w-5 text-white opacity-90 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+                        </svg>
+                        <span>Add to Cart</span>
+                    </button>
+                
+                    <!-- Order Now -->
+                    <button type="button" onclick="orderNow()" class="group flex items-center justify-center px-4 py-3 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-gradient-to-r from-brand-yellow to-brand-orange hover:from-yellow-500 hover:to-orange-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition-all duration-200 transform hover:-translate-y-0.5">
+                        <span>Order Now</span>
+                        <svg class="ml-2 -mr-1 h-5 w-5 text-white opacity-90 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Cart Sidebar -->
+<div id="cart-sidebar" class="cart-sidebar-container" role="dialog" aria-modal="true" aria-labelledby="cart-heading">
+    <!-- Cart Header -->
+    <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-dark-700">
+        <h2 id="cart-heading" class="text-xl font-bold text-gray-900 dark:text-white">Your Cart</h2>
+        <button id="close-cart-button" type="button" class="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-dark-700 focus:outline-none focus:ring-2 focus:ring-brand-indigo">
+            <span class="sr-only">Close cart</span>
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+    </div>
+
+    <!-- Cart Body -->
+    <div id="cart-items-container" class="flex-1 overflow-y-auto p-6">
+        <div class="text-center py-8">
+            <p class="text-gray-500 dark:text-gray-400">Your cart is empty.</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- Cart Backdrop -->
+<div id="cart-backdrop" class="fixed inset-0 bg-black/50 z-[10000] hidden opacity-0 transition-opacity duration-300"></div>
+
+    <script src="./main.js" ></script>
+    <script src="cart.js"></script>
+    <script src="project-modal.js"></script>
+    <script src="js/image-upload.js"></script>
+    <script src="orders.js"></script>
+    <script src="event.js"></script>
+</body>
+</html>

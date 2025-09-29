@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="light-theme">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stark Labs Admin JSON Creator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'brand-indigo': '#4F46E5',
+            'brand-purple': '#7C3AED',
+            'brand-yellow': '#F59E0B',
+            'brand-orange': '#F97316',
+            'dark-700': '#1E293B',
+            'dark-800': '#0F172A',
+            'dark-900': '#020617',
+            'light-100': '#F8FAFC',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .input {
+      width: 100%;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      color: #111827;
+    }
+
+    .dark .input {
+      background-color: #1e293b;
+      color: white;
+      border-color: #334155;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-gray-50 dark:bg-dark-900 text-gray-900 dark:text-gray-100 transition-colors">
+
+  <!-- Header -->
+  <header class="bg-white dark:bg-dark-800 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-indigo to-brand-purple">
+          ستارك لابز
+        </h1>
+        <div class="space-x-2">
+          <button onclick="toggleSection('event-section')"
+                  class="px-4 py-2 rounded-lg bg-orange-500 text-white hover:bg-orange-600">JSON for Event</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Event JSON Generator -->
+    <section id="event-section" >
+      <h2 class="text-xl font-bold mb-4">Event JSON Generator</h2>
+      <form id="event-form" class="space-y-4">
+        <!-- Event ID -->
+        <div>
+          <label for="event-id" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Event ID</label>
+          <input type="text" id="event-id" name="id" placeholder="Event ID (e.g. event-1)" required class="input" />
+        </div>
+        <!-- Title -->
+        <div>
+          <label for="event-title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Event Title</label>
+          <input type="text" id="event-title" name="title" placeholder="Event Title" required class="input" />
+        </div>
+        <!-- Description -->
+        <div>
+          <label for="event-description" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Description</label>
+          <textarea id="event-description" name="description" placeholder="Event Description" required class="input"></textarea>
+        </div>
+        <!-- Discount -->
+        <div>
+          <label for="event-discount" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Discount</label>
+          <input type="text" id="event-discount" name="discount" placeholder="Discount (e.g. 15% or EGP 50)" required class="input" />
+        </div>
+        <!-- Start Date -->
+        <div>
+          <label for="event-from" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Start Date</label>
+          <input type="date" id="event-from" name="from" required class="input" />
+        </div>
+        <!-- End Date -->
+        <div>
+          <label for="event-to" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">End Date</label>
+          <input type="date" id="event-to" name="to" required class="input" />
+        </div>
+        <!-- Image Path -->
+        <div>
+          <label for="event-image" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Image Path</label>
+          <input type="text" id="event-image" name="image" placeholder="Auto-generated" readonly class="input" />
+        </div>
+        <!-- Tags -->
+        <div>
+          <label for="event-tags" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Tags (comma separated)</label>
+          <input type="text" id="event-tags" name="tags" placeholder="Hot, New, Limited" class="input" />
+        </div>
+        <!-- Buttons -->
+        <div class="flex gap-4 mt-4">
+          <button type="button" onclick="generateEventJSON()" class="px-4 py-2 bg-indigo-600 text-white rounded-lg">Generate JSON</button>
+          <button type="button" onclick="resetEventForm()" class="px-4 py-2 border dark:border-dark-600 text-gray-700 dark:text-gray-300 rounded-lg">Reset</button>
+          <button type="button" onclick="copyEventJSON()" class="px-4 py-2 bg-gray-600 text-white rounded-lg">Copy JSON</button>
+        </div>
+      </form>
+      <div class="mt-6">
+        <label for="event-json-output" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Generated JSON:</label>
+        <textarea id="event-json-output" rows="10"
+                  class="w-full mt-2 input font-mono text-sm" readonly></textarea>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-dark-800 border-t border-gray-200 dark:border-dark-700 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="text-center text-sm text-gray-500 dark:text-gray-400">
+        <p>© 2025 ستارك لابز. جميع الحقوق محفوظة.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Theme Toggle Button -->
+  <button id="theme-toggle"
+          aria-label="تبديل الوضع الليلي"
+          title="تبديل الوضع الليلي"
+          class="fixed bottom-4 right-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-indigo">
+    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+    </svg>
+    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" clip-rule="evenodd" fill-rule="evenodd"></path>
+    </svg>
+  </button>
+
+  <!-- JavaScript -->
+  <script>
+    // Declare theme toggle variables only once
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+    function toggleSection(id) {
+      document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
+      document.getElementById(id).classList.remove("hidden");
+    }
+
+    // Auto-generate image path based on Event ID
+    document.getElementById('event-id').addEventListener('input', function(e) {
+      const id = e.target.value.trim();
+      const imagePathInput = document.getElementById('event-image');
+      if (id && imagePathInput) {
+        imagePathInput.value = `events/${id}/1.png`;
+      }
+    });
+
+    // Project JSON functions
+    function generateProjectJSON() {
+      const form = document.getElementById('project-form');
+      const formData = new FormData(form);
+
+      const json = {
+        id: formData.get('id'),
+        title: formData.get('title'),
+        description: formData.get('description')
+      };
+
+      document.getElementById('project-json-output').value = JSON.stringify(json, null, 2);
+    }
+
+    function copyProjectJSON() {
+      const textarea = document.getElementById('project-json-output');
+      textarea.select();
+      document.execCommand('copy');
+      alert("Copied to clipboard!");
+    }
+
+    function resetProjectForm() {
+      document.getElementById('project-form').reset();
+      document.getElementById('project-json-output').value = '';
+    }
+
+    // Event JSON functions
+    function generateEventJSON() {
+      const form = document.getElementById('event-form');
+      const formData = new FormData(form);
+      const id = formData.get('id');
+
+      const tags = formData.get('tags') ?
+        formData.get('tags').split(',').map(tag => tag.trim()) : [];
+
+      const json = {
+        id: id,
+        title: formData.get('title'),
+        description: formData.get('description'),
+        discount: formData.get('discount'),
+        from: new Date(formData.get('from')).toISOString(),
+        to: new Date(formData.get('to')).toISOString(),
+        image: formData.get('image') || `events/${id}/1.png`,
+        tags: tags
+      };
+
+      document.getElementById('event-json-output').value = JSON.stringify(json, null, 2);
+    }
+
+    function copyEventJSON() {
+      const textarea = document.getElementById('event-json-output');
+      textarea.select();
+      document.execCommand('copy');
+      alert("Copied to clipboard!");
+    }
+
+    function resetEventForm() {
+      document.getElementById('event-form').reset();
+      document.getElementById('event-json-output').value = '';
+    }
+
+    // Theme toggle functionality
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      themeToggleLightIcon.classList.remove('hidden');
+      document.documentElement.classList.add('dark');
+    } else {
+      themeToggleDarkIcon.classList.remove('hidden');
+      document.documentElement.classList.remove('dark');
+    }
+
+    themeToggleBtn.addEventListener('click', function () {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      if (localStorage.getItem('color-theme') === 'light') {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('color-theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('color-theme', 'light');
+      }
+    });
+  </script>
+
+</body>
+</html>
